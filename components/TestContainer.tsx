@@ -31,6 +31,12 @@ export function TestContainer() {
         const data: Result = await response.json();
         setResult(data);
 
+        // If completed or error, reset polling attempts to enable button
+        if (data.status === "completed" || data.status === "error") {
+          setPollAttempts(0);
+          return;
+        }
+
         // If still processing, continue polling
         if (data.status === "processing" && pollAttempts < MAX_POLL_ATTEMPTS) {
           setPollAttempts((prev) => prev + 1);
@@ -43,6 +49,7 @@ export function TestContainer() {
           status: "error",
           message: "Failed to retrieve your result. Please try again later.",
         });
+        setPollAttempts(0);
       }
     },
     [pollAttempts],
@@ -93,38 +100,38 @@ export function TestContainer() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-1 sm:mb-2">
             AI Placement Test
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600">
             Test your knowledge and receive an instant assessment
           </p>
         </div>
 
         {/* Progress indicator */}
-        <div className="mb-8 flex items-center justify-center gap-8">
+        <div className="mb-6 sm:mb-8 flex items-center justify-center gap-4 sm:gap-6 lg:gap-8">
           <div
             className={`flex items-center gap-3 ${
               viewState === "test" ? "opacity-100" : "opacity-50"
             }`}
           >
             <div
-              className={`shrink-0 flex items-center justify-center h-10 w-10 rounded-full font-bold text-white ${
+              className={`shrink-0 flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 rounded-full font-bold text-white text-sm sm:text-base ${
                 viewState === "test" ? "bg-blue-600" : "bg-green-600"
               }`}
             >
               {viewState === "test" ? "1" : "✓"}
             </div>
-            <span className="hidden sm:inline text-gray-700 font-medium">
+            <span className="hidden sm:inline text-sm lg:text-base text-gray-700 font-medium">
               Answer Questions
             </span>
           </div>
 
-          <div className="hidden sm:block h-1 w-12 bg-gray-300" />
+          <div className="hidden sm:block h-1 w-8 sm:w-10 lg:w-12 bg-gray-300" />
 
           <div
             className={`flex items-center gap-3 ${
@@ -132,13 +139,13 @@ export function TestContainer() {
             }`}
           >
             <div
-              className={`shrink-0 flex items-center justify-center h-10 w-10 rounded-full font-bold text-white ${
+              className={`shrink-0 flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 rounded-full font-bold text-white text-sm sm:text-base ${
                 viewState === "result" ? "bg-blue-600" : "bg-gray-400"
               }`}
             >
               2
             </div>
-            <span className="hidden sm:inline text-gray-700 font-medium">
+            <span className="hidden sm:inline text-sm lg:text-base text-gray-700 font-medium">
               View Results
             </span>
           </div>

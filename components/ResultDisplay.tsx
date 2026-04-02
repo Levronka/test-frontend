@@ -16,12 +16,12 @@ export function ResultDisplay({
 }: ResultDisplayProps) {
   if (result.status === "processing") {
     return (
-      <div className="w-full max-w-2xl mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-          <div className="mb-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 animate-pulse">
+      <div className="w-full max-w-2xl mx-auto px-3 sm:px-4">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 text-center">
+          <div className="mb-4 sm:mb-6">
+            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-blue-100 animate-pulse">
               <svg
-                className="w-8 h-8 text-blue-600 animate-spin"
+                className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 animate-spin"
                 fill="none"
                 viewBox="0 0 24 24"
               >
@@ -41,11 +41,11 @@ export function ResultDisplay({
               </svg>
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">
             Processing Your Test...
           </h2>
-          <p className="text-gray-600 mb-2">{result.message}</p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-2">{result.message}</p>
+          <p className="text-xs sm:text-sm text-gray-500">
             Please wait while we evaluate your answers
           </p>
           <div className="mt-6 w-full bg-gray-200 rounded-full h-2">
@@ -61,20 +61,20 @@ export function ResultDisplay({
 
   if (result.status === "error") {
     return (
-      <div className="w-full max-w-2xl mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <div className="mb-6 flex justify-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
-              <span className="text-2xl">❌</span>
+      <div className="w-full max-w-2xl mx-auto px-3 sm:px-4">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
+          <div className="mb-4 sm:mb-6 flex justify-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-red-100">
+              <span className="text-xl sm:text-2xl">❌</span>
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-900 mb-2 sm:mb-3">
             Error Processing Test
           </h2>
-          <p className="text-center text-gray-600 mb-6">{result.message}</p>
+          <p className="text-center text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 break-words">{result.message}</p>
           <button
             onClick={onRestart}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base"
           >
             Try Again
           </button>
@@ -83,7 +83,6 @@ export function ResultDisplay({
     );
   }
 
-  // Completed state
   const getLevelColor = (level?: string) => {
     switch (level) {
       case "beginner":
@@ -110,60 +109,88 @@ export function ResultDisplay({
     }
   };
 
+  // Completed state
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="bg-white rounded-lg shadow-lg p-8">
-        <div className="mb-8 flex justify-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100">
-            <span className="text-4xl">✅</span>
+    <div className="w-full max-w-2xl mx-auto px-3 sm:px-4">
+      <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
+        <div className="mb-6 sm:mb-8 flex justify-center">
+          <div className="inline-flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-green-100">
+            <span className="text-2xl sm:text-4xl">✅</span>
           </div>
         </div>
 
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-2">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-1 sm:mb-2">
           Test Completed!
         </h2>
-        <p className="text-center text-gray-600 mb-8">{result.message}</p>
+        <p className="text-center text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 break-words">{result.message}</p>
 
-        <div className="grid grid-cols-2 gap-6 mb-8">
-          <div className="bg-blue-50 rounded-lg p-6 border-2 border-blue-200">
-            <p className="text-sm font-medium text-gray-600 mb-2">Your Score</p>
-            <p className="text-4xl font-bold text-blue-600">{result.score}%</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+          <div className="bg-blue-50 rounded-lg p-4 sm:p-6 border-2 border-blue-200">
+            <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1 sm:mb-2">Your Score</p>
+            <p className="text-3xl sm:text-4xl font-bold text-blue-600">{result.score}%</p>
           </div>
 
           <div
-            className={`rounded-lg p-6 border-2 ${getLevelColor(result.level)}`}
+            className={`rounded-lg p-4 sm:p-6 border-2 ${getLevelColor(result.level)}`}
           >
-            <p className="text-sm font-medium text-gray-600 mb-2">
+            <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1 sm:mb-2">
               Achievement Level
             </p>
-            <p className="text-2xl font-bold capitalize">
+            <p className="text-xl sm:text-2xl font-bold capitalize">
               {getLevelIcon(result.level)} {result.level}
             </p>
           </div>
         </div>
 
-        {result.certificateUrl && (
-          <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-6 mb-8">
-            <p className="text-sm font-medium text-gray-600 mb-4">
-              🎓 Your Certificate
-            </p>
-            <a
-              href={result.certificateUrl}
-              className="inline-block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-              download
-            >
-              Download Certificate
-            </a>
-            <p className="text-xs text-gray-500 mt-2">
-              Certificate ID: {result.taskId}
-            </p>
-          </div>
-        )}
+        <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
+          <p className="text-xs sm:text-sm font-medium text-gray-600 mb-3 sm:mb-4">
+            🎓 Your Certificate
+          </p>
+          <button
+            onClick={() => {
+              // Create a simple text-based certificate download
+              const certificateText = `
+AI PLACEMENT TEST CERTIFICATE
+=============================
+
+Certificate ID: ${result.taskId}
+
+Score: ${result.score}%
+Level: ${result.level}
+Date: ${new Date().toLocaleDateString()}
+
+This certificate confirms your proficiency level in Frontend Development.
+
+Generated by AI Placement Test System
+              `;
+              const element = document.createElement("a");
+              element.setAttribute(
+                "href",
+                "data:text/plain;charset=utf-8," +
+                  encodeURIComponent(certificateText),
+              );
+              element.setAttribute(
+                "download",
+                `certificate_${result.taskId}.txt`,
+              );
+              element.style.display = "none";
+              document.body.appendChild(element);
+              element.click();
+              document.body.removeChild(element);
+            }}
+            className="w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base"
+          >
+            📥 Download Certificate
+          </button>
+          <p className="text-xs text-gray-500 mt-2 truncate">
+            Certificate ID: {result.taskId}
+          </p>
+        </div>
 
         <button
           onClick={onRestart}
           disabled={isLoading}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base"
         >
           {isLoading ? "Loading..." : "Take Another Test"}
         </button>

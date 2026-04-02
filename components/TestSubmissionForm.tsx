@@ -58,26 +58,26 @@ export function TestSubmissionForm({
   const allAnswered = questions.every((q) => answers[q.id]);
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto">
-      <div className="space-y-8">
+    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto px-1">
+      <div className="space-y-4 sm:space-y-6 lg:space-y-8">
         {questions.map((question, index) => (
           <div
             key={question.id}
-            className="border rounded-lg p-6 bg-white shadow-sm hover:shadow-md transition-shadow"
+            className="border rounded-lg p-4 sm:p-5 lg:p-6 bg-white shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="flex items-start gap-4">
-              <span className="shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-full bg-blue-100 text-blue-600 font-semibold">
+            <div className="flex items-start gap-3 sm:gap-4">
+              <span className="shrink-0 inline-flex items-center justify-center h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-blue-100 text-blue-600 font-semibold text-sm sm:text-base">
                 {index + 1}
               </span>
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">
+                <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">
                   {question.question}
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {question.options.map((option) => (
                     <label
                       key={option}
-                      className="flex items-center p-3 rounded-lg border-2 cursor-pointer transition-all hover:bg-gray-50"
+                      className="flex items-start sm:items-center p-2.5 sm:p-3 rounded-lg border-2 cursor-pointer transition-all hover:bg-gray-50"
                       style={{
                         borderColor:
                           answers[question.id] === option
@@ -93,10 +93,10 @@ export function TestSubmissionForm({
                         onChange={(e) =>
                           handleAnswerChange(question.id, e.target.value)
                         }
-                        className="w-4 h-4 text-blue-600 cursor-pointer"
+                        className="w-4 h-4 text-blue-600 cursor-pointer mt-0.5 sm:mt-0"
                         disabled={isSubmitting}
                       />
-                      <span className="ml-3 text-gray-900">{option}</span>
+                      <span className="ml-2 sm:ml-3 text-sm sm:text-base text-gray-900 break-words">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -112,11 +112,11 @@ export function TestSubmissionForm({
         ))}
       </div>
 
-      <div className="mt-8 flex gap-4">
+      <div className="mt-6 sm:mt-8 flex flex-col gap-3">
         <button
           type="submit"
           disabled={isSubmitting || !allAnswered}
-          className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors text-sm sm:text-base"
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center gap-2">
@@ -129,7 +129,7 @@ export function TestSubmissionForm({
         </button>
       </div>
 
-      <p className="mt-4 text-sm text-gray-500 text-center">
+      <p className="mt-4 text-xs sm:text-sm text-gray-500 text-center">
         {questions.length - Object.keys(answers).length} of {questions.length}{" "}
         questions remaining
       </p>
