@@ -58,7 +58,11 @@ export function TestSubmissionForm({
   const allAnswered = questions.every((q) => answers[q.id]);
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto px-1" suppressHydrationWarning>
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-2xl mx-auto px-1"
+      suppressHydrationWarning
+    >
       <div className="space-y-4 sm:space-y-6 lg:space-y-8">
         {questions.map((question, index) => (
           <div

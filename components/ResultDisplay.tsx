@@ -16,7 +16,10 @@ export function ResultDisplay({
 }: ResultDisplayProps) {
   if (result.status === "processing") {
     return (
-      <div className="w-full max-w-2xl mx-auto px-3 sm:px-4" suppressHydrationWarning>
+      <div
+        className="w-full max-w-2xl mx-auto px-3 sm:px-4"
+        suppressHydrationWarning
+      >
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 text-center">
           <div className="mb-4 sm:mb-6">
             <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-blue-100 animate-pulse">
@@ -63,7 +66,10 @@ export function ResultDisplay({
 
   if (result.status === "error") {
     return (
-      <div className="w-full max-w-2xl mx-auto px-3 sm:px-4" suppressHydrationWarning>
+      <div
+        className="w-full max-w-2xl mx-auto px-3 sm:px-4"
+        suppressHydrationWarning
+      >
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
           <div className="mb-4 sm:mb-6 flex justify-center">
             <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-red-100">
@@ -115,7 +121,10 @@ export function ResultDisplay({
 
   // Completed state
   return (
-    <div className="w-full max-w-2xl mx-auto px-3 sm:px-4" suppressHydrationWarning>
+    <div
+      className="w-full max-w-2xl mx-auto px-3 sm:px-4"
+      suppressHydrationWarning
+    >
       <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8">
         <div className="mb-6 sm:mb-8 flex justify-center">
           <div className="inline-flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-green-100">
@@ -126,7 +135,7 @@ export function ResultDisplay({
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-1 sm:mb-2">
           Test Completed!
         </h2>
-        <p className="text-center text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 break-words">
+        <p className="text-center text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 wrap-break-words">
           {result.message}
         </p>
 
